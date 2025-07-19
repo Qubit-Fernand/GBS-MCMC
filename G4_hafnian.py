@@ -9,7 +9,7 @@ from Glauber_hafnian import *
 
 # Number of vertexes
 n = 256
-G = nx.Graph(np.load(f"./G4.npy"))
+G = nx.Graph(np.load(f"./Data/G4.npy"))
 c = 0.4 # fugacity
 k = 16
 iteration = 1000
@@ -21,28 +21,28 @@ max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     max_hafnian_list[i], best_subgraph, best_hafnian = random_search(G, k, iteration)
 
-np.save("./RS_hafnian_list.npy", max_hafnian_list)
+np.save("./Data/G4/RS_hafnian_list.npy", max_hafnian_list)
 
 # Finding the 16-node subgraph with the maximum Hafnian using Glauber Random Search
 glauber_max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     glauber_max_hafnian_list[i], glauber_best_subgraph, glauber_best_hafnian = glauber_random_search(G, k, c, iteration, mixing_time)
 
-np.save("./glauber_RS_hafnian_list.npy", glauber_max_hafnian_list)
+np.save("./Data/G4/glauber_RS_hafnian_list.npy", glauber_max_hafnian_list)
 
 # Finding the 16-node subgraph with the maximum Hafnian using Jerrum Glauber Random Search
 jerrum_glauber_max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     jerrum_glauber_max_hafnian_list[i], jerrum_glauber_best_subgraph, jerrum_glauber_best_hafnian = jerrum_glauber_random_search(G, k, c, iteration, mixing_time)
 
-np.save("./jerrum_glauber_RS_hafnian_list.npy", jerrum_glauber_max_hafnian_list)
+np.save("./Data/G4/jerrum_glauber_RS_hafnian_list.npy", jerrum_glauber_max_hafnian_list)
 
 # Finding the 16-node subgraph with the maximum Hafnian using Double-Loop Glauber Random Search
 double_loop_glauber_max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     double_loop_glauber_max_hafnian_list[i], double_loop_glauber_best_subgraph, double_loop_glauber_best_hafnian = double_loop_glauber_random_search(G, k, c, iteration, mixing_time)
 
-np.save("./double_loop_glauber_RS_hafnian_list.npy", double_loop_glauber_max_hafnian_list)
+np.save("./Data/G4/double_loop_glauber_RS_hafnian_list.npy", double_loop_glauber_max_hafnian_list)
 
 
 

@@ -24,10 +24,10 @@ quantum_inspired_max_hafnian_list = np.zeros(iteration+1)
 
 quantum_inspired_max_hafnian_list, quantum_inspired_best_subgraph, quantum_inspired_best_hafnian = quantum_inspired_random_search(G, k, iteration)
 
-np.save(f"./quantum_inspired_RS_hafnian_list.npy", quantum_inspired_max_hafnian_list)
+np.save(f"./Data/G4/quantum_inspired_RS_hafnian_list.npy", quantum_inspired_max_hafnian_list)
 
 quantum_inspired_max_hafnian_list = np.zeros(iteration+1)
 
 quantum_inspired_max_hafnian_list, quantum_inspired_best_subgraph, quantum_inspired_best_hafnian = quantum_inspired_simulated_annealing(G, k, iteration, t_initial)
 
-np.save(f"./quantum_inspired_SA_hafnian_list.npy", quantum_inspired_max_hafnian_list)
+np.save(f"./Data/G4/quantum_inspired_SA_hafnian_list.npy", quantum_inspired_max_hafnian_list)

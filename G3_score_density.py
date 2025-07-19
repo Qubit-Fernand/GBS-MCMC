@@ -9,7 +9,7 @@ from Glauber_density import *
 
 # Number of vertexes
 n = 256
-G = nx.Graph(np.load(f"./G3_sparse.npy"))
+G = nx.Graph(np.load(f"./Data/G3_sparse.npy"))
 
 # Plot the hafnian score advantage versus click number
 c = 0.4 # fugacity
@@ -25,4 +25,4 @@ for k in click_number_list:
         # print(f"Click number {k}: {best_density}")
         _, _, double_loop_glauber_best_density[i] = double_loop_glauber_random_search(G, k, c, iteration, mixing_time)
     score_advantage = double_loop_glauber_best_density / best_density
-    np.save(f"./density_score_advantage_{k}.npy", score_advantage)
+    np.save(f"./Data/G3/density_score_advantage_{k}.npy", score_advantage)

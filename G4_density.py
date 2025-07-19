@@ -15,21 +15,21 @@ iteration = 1000
 mixing_time = 1000 # We write 10000 in manuscript since the outter loop in double-loop Glauber times 10
 t_initial = 1.0
 
-G = nx.Graph(np.load(f"./G4.npy"))
+G = nx.Graph(np.load(f"./Data/G4.npy"))
 
 # Finding the 80-node subgraph with the maximum density using Random Search
 max_density_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     max_density_list[i], best_subgraph, best_density = random_search(G, k, iteration)
 
-np.save("./RS_density_list.npy", max_density_list)
+np.save("./Data/G4/RS_density_list.npy", max_density_list)
 
 # Finding the 80-node subgraph with the maximum density using Glauber Random Search
 glauber_max_density_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     glauber_max_density_list[i], glauber_best_subgraph, glauber_best_density = glauber_random_search(G, k, c, iteration, mixing_time)
 
-np.save("./glauber_RS_density_list.npy", glauber_max_density_list)
+np.save("./Data/G4/glauber_RS_density_list.npy", glauber_max_density_list)
 
 
 # Finding the 80-node subgraph with the maximum density using Jerrum Glauber Random Search
@@ -37,14 +37,14 @@ jerrum_glauber_max_density_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     jerrum_glauber_max_density_list[i], jerrum_glauber_best_subgraph, jerrum_glauber_best_density = jerrum_glauber_random_search(G, k, c, iteration, mixing_time)
 
-np.save("./jerrum_glauber_RS_density_list.npy", jerrum_glauber_max_density_list)
+np.save("./Data/G4/jerrum_glauber_RS_density_list.npy", jerrum_glauber_max_density_list)
 
 # Finding the 80-node subgraph with the maximum density using Double-Loop Glauber Random Search
 double_loop_glauber_max_density_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     double_loop_glauber_max_density_list[i], double_loop_glauber_best_subgraph, double_loop_glauber_best_density = double_loop_glauber_random_search(G, k, c, iteration, mixing_time)
 
-np.save("./double_loop_glauber_RS_density_list.npy", double_loop_glauber_max_density_list)
+np.save("./Data/G4/double_loop_glauber_RS_density_list.npy", double_loop_glauber_max_density_list)
 
 
 

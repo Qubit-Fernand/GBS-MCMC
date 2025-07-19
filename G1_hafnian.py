@@ -11,7 +11,7 @@ from Glauber_hafnian import *
 n = 256
 
 # Plot the hafnian of the 80-node subgraph with the maximum hafnian using Random Search
-G = nx.Graph(np.load(f"./G1.npy"))
+G = nx.Graph(np.load(f"./Data/G1.npy"))
 c = 0.1 # fugacity
 k = 16
 iteration = 1000
@@ -24,21 +24,21 @@ max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     max_hafnian_list[i], best_subgraph, best_hafnian = random_search(G, k, iteration)
 
-np.save(f"./RS_hafnian_list.npy", max_hafnian_list)
+np.save(f"./Data/G1/RS_hafnian_list.npy", max_hafnian_list)
 
 # Finding the 80-node subgraph with the maximum hafnian using Glauber Random Search
 glauber_max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     glauber_max_hafnian_list[i], glauber_best_subgraph, glauber_best_hafnian = glauber_random_search(G, k, c, iteration, mixing_time)
 
-np.save(f"./glauber_RS_hafnian_list.npy", glauber_max_hafnian_list)
+np.save(f"./Data/G1/glauber_RS_hafnian_list.npy", glauber_max_hafnian_list)
 
 # Finding the 80-node subgraph with the maximum hafnian using Jerrum Glauber Random Search
 jerrum_glauber_max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     jerrum_glauber_max_hafnian_list[i], jerrum_glauber_best_subgraph, jerrum_glauber_best_hafnian = jerrum_glauber_random_search(G, k, c, iteration, mixing_time)
 
-np.save(f"./jerrum_glauber_RS_hafnian_list.npy", jerrum_glauber_max_hafnian_list)
+np.save(f"./Data/G1/jerrum_glauber_RS_hafnian_list.npy", jerrum_glauber_max_hafnian_list)
 
 
 
@@ -48,18 +48,18 @@ max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     max_hafnian_list[i], best_subgraph, best_hafnian = simulated_annealing(G, k, iteration, t_initial)
     
-np.save(f"./SA_hafnian_list.npy", max_hafnian_list)
+np.save(f"./Data/G1/SA_hafnian_list.npy", max_hafnian_list)
 
 # Finding the 80-node subgraph with the maximum hafnian using Glauber Simulated Annealing
 glauber_max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     glauber_max_hafnian_list[i], glauber_best_subgraph, glauber_best_hafnian = glauber_simulated_annealing(G, k, c, iteration, mixing_time, t_initial)
 
-np.save(f"./glauber_SA_hafnian_list.npy", glauber_max_hafnian_list)
+np.save(f"./Data/G1/glauber_SA_hafnian_list.npy", glauber_max_hafnian_list)
 
 # Finding the 80-node subgraph with the maximum hafnian using Jerrum Glauber Simulated Annealing
 jerrum_glauber_max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     jerrum_glauber_max_hafnian_list[i], jerrum_glauber_best_subgraph, jerrum_glauber_best_hafnian = jerrum_glauber_simulated_annealing(G, k, c, iteration, mixing_time, t_initial)
 
-np.save(f"./jerrum_glauber_SA_hafnian_list.npy", jerrum_glauber_max_hafnian_list)
+np.save(f"./Data/G1/jerrum_glauber_SA_hafnian_list.npy", jerrum_glauber_max_hafnian_list)
