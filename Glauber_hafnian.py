@@ -95,11 +95,11 @@ def jerrum_glauber_dynamics(G, k, c, mixing_time):
     return post_select_subgraph[-1]
 
 # uniform sampling from Appendix B1 for dense graph
-def double_loop_glauber_dynamics(G, k, c, mixing_time, inner = 1, outer = 10):
+def double_loop_glauber_dynamics(G, k, c, mixing_time):
     # G is a bipartite graph
     matching = set()
     post_select_subgraph = list()
-    for _ in range(outer * mixing_time):
+    for _ in range(1 * mixing_time):
         # Randomly select an edge
         e = random.choice(list(G.edges()))
         # Check the status of the selected edge
@@ -112,7 +112,7 @@ def double_loop_glauber_dynamics(G, k, c, mixing_time, inner = 1, outer = 10):
             uniform_matching = matching
             subgraph = G.subgraph(G.edge_subgraph(matching).nodes())
             # Uniformly sample a perfect matching from the subgraph
-            for _ in range(inner * mixing_time):
+            for _ in range(1 * mixing_time):
                 new_e = random.choice(list(subgraph.edges()))
                 if len(uniform_matching) == len(subgraph.nodes())//2 and new_e in uniform_matching: # is perfect matching
                     uniform_matching = uniform_matching - {new_e}
