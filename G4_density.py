@@ -13,6 +13,7 @@ c = 0.8 # fugacity
 k = 80
 iteration = 1000
 mixing_time = 1000 # density mixing time 1000 x 100, since k = 80 computationally expensive
+t_initial = 1.0
 
 G = nx.Graph(np.load(f"./Data/G4.npy"))
 

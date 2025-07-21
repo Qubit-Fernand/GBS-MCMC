@@ -185,50 +185,7 @@ def reject_glauber_dynamics(G, k, c, mixing_time):
                 break
     return post_select_subgraph
 
-def quantum_inspired_sampling(G, k):
-    A = nx.adjacency_matrix(G).toarray()
-    # Construct the diagonal-dominant matrix
-    for i in range(G.number_of_nodes()):
-        for j in range(G.number_of_nodes()):
-            if not(j==i):
-                A[i][i]+=abs(A[i][j])
-                
-    # Function to create the vector b^(ij) from A_ij  
-    def create_b_ij(A, i, j):
-        b_ij = np.zeros(A.shape[0])  # M-dimensional vector
-        b_ij[i] = np.sqrt(A[i, j])
-        b_ij[j] = np.sqrt(A[i, j])
-        return b_ij
-
-    # Construct the matrix H
-    M = A.shape[0]  # Matrix dimension (M x M)
-    H = np.zeros((M, M * M))  # H is M x M^2 matrix
-
-    # Fill the matrix H as per the given description
-    for i in range(M):
-        for j in range(i + 1, M):
-            b_ij = create_b_ij(A, i, j)
-            column_index = M * i + j  # Column index in H
-            H[:, column_index] = b_ij
-        
-    # Construct the diagonal matrix D
-    D_diag = np.sum(H, axis=0) 
-    D = np.diag(D_diag)  
-
-    # Construct the matrix V
-    V = np.zeros_like(H)  
-    for i in range(H.shape[1]):
-        if D_diag[i] > 0:  # Avoid division by zero
-            V[:, i] = H[:, i] / D_diag[i]
-        else:
-            V[:, i] = 0  # Set the column to zero if D_ii = 0
-
-    trace = np.sum(D_diag ** 2)
-    Q = np.diag(D_diag **2) / trace
-    
-    # Verify that A = HH^T
-    A_reconstructed = V @ D @ D @ V.T
-
+def quantum_inspired_sampling(G, k, V, D_diag, trace):
     row_indices = []
     while len(row_indices) < k:
         row_indices = []
@@ -323,9 +280,57 @@ def quantum_inspired_random_search(G, k, iteration):
     AB_subgraph = None
     List = [Best]
     
+    nodes = list(G.nodes)
+    Best = 0
+    AB_subgraph = None
+    List = [Best]
+    
+    A = nx.adjacency_matrix(G).toarray()
+    M = A.shape[0]  # Matrix dimension (M x M)
+    # Construct the diagonal-dominant matrix
+    for i in range(M):
+        for j in range(M):
+            if not(j==i):
+                A[i][i]+=abs(A[i][j])
+                
+    # Function to create the vector b^(ij) from A_ij  
+    def create_b_ij(A, i, j):
+        b_ij = np.zeros(A.shape[0])  # M-dimensional vector
+        b_ij[i] = np.sqrt(A[i, j])
+        b_ij[j] = np.sqrt(A[i, j])
+        return b_ij
+
+    # Construct the matrix H
+    H = np.zeros((M, M * M))  # H is M x M^2 matrix
+
+    # Fill the matrix H as per the given description
+    for i in range(M):
+        for j in range(i + 1, M):
+            b_ij = create_b_ij(A, i, j)
+            column_index = M * i + j  # Column index in H
+            H[:, column_index] = b_ij
+        
+    # Construct the diagonal matrix D
+    D_diag = np.sum(H, axis=0) 
+    D = np.diag(D_diag)  
+
+    # Construct the matrix V
+    V = np.zeros_like(H)  
+    for i in range(H.shape[1]):
+        if D_diag[i] > 0:  # Avoid division by zero
+            V[:, i] = H[:, i] / D_diag[i]
+        else:
+            V[:, i] = 0  # Set the column to zero if D_ii = 0
+
+    trace = np.sum(D_diag ** 2)
+    Q = np.diag(D_diag **2) / trace
+    
+    # Verify that A = HH^T
+    A_reconstructed = V @ D @ D @ V.T
+    
     for _ in range(iteration):
         # Choose Ai, a k-d of A by Glauber Dynamics
-        Ai_subgraph = quantum_inspired_sampling(G, k)
+        Ai_subgraph = quantum_inspired_sampling(G, k, V, D_diag, trace)
         f_Ai = calculate_density(Ai_subgraph)
         
         if f_Ai > Best:
@@ -556,9 +561,58 @@ def double_loop_glauber_simulated_annealing(G, k, c, iteration, mixing_time, t_i
 
 def quantum_inspired_simulated_annealing(G, k, iteration, t_initial):
     nodes = list(G.nodes)
+    
+    nodes = list(G.nodes)
+    Best = 0
+    AB_subgraph = None
+    List = [Best]
+    
+    A = nx.adjacency_matrix(G).toarray()
+    M = A.shape[0]  # Matrix dimension (M x M)
+    # Construct the diagonal-dominant matrix
+    for i in range(M):
+        for j in range(M):
+            if not(j==i):
+                A[i][i]+=abs(A[i][j])
+                
+    # Function to create the vector b^(ij) from A_ij  
+    def create_b_ij(A, i, j):
+        b_ij = np.zeros(A.shape[0])  # M-dimensional vector
+        b_ij[i] = np.sqrt(A[i, j])
+        b_ij[j] = np.sqrt(A[i, j])
+        return b_ij
+
+    # Construct the matrix H
+    H = np.zeros((M, M * M))  # H is M x M^2 matrix
+
+    # Fill the matrix H as per the given description
+    for i in range(M):
+        for j in range(i + 1, M):
+            b_ij = create_b_ij(A, i, j)
+            column_index = M * i + j  # Column index in H
+            H[:, column_index] = b_ij
+        
+    # Construct the diagonal matrix D
+    D_diag = np.sum(H, axis=0) 
+    D = np.diag(D_diag)  
+
+    # Construct the matrix V
+    V = np.zeros_like(H)  
+    for i in range(H.shape[1]):
+        if D_diag[i] > 0:  # Avoid division by zero
+            V[:, i] = H[:, i] / D_diag[i]
+        else:
+            V[:, i] = 0  # Set the column to zero if D_ii = 0
+
+    trace = np.sum(D_diag ** 2)
+    Q = np.diag(D_diag **2) / trace
+    
+    # Verify that A = HH^T
+    A_reconstructed = V @ D @ D @ V.T
+    
     # Initialize S by Glauber Dynamics
     S = np.zeros(len(nodes))
-    initial = list(quantum_inspired_sampling(G, k).nodes)
+    initial = list(quantum_inspired_sampling(G, k, V, D_diag, trace).nodes)
     S[initial] = 1
     AS_nodes = np.where(S == 1)[0]
     AS_subgraph = G.subgraph(AS_nodes)
@@ -567,6 +621,7 @@ def quantum_inspired_simulated_annealing(G, k, iteration, t_initial):
     List = [Best]
     
     t = t_initial
+    
     for _ in range(iteration):
         # Original from scratch search AR_subgraph = glauber_dynamics(G, k, c, mixing_time)
         # Generate an integer m in [0, k-1]
@@ -577,7 +632,7 @@ def quantum_inspired_simulated_annealing(G, k, iteration, t_initial):
         s = set(random.sample(list(nonzero_indices), m)) # fixed indices
         
         # Glauber Dynamics until S and R has no intersection
-        r = set(quantum_inspired_sampling(G, k).nodes)
+        r = set(quantum_inspired_sampling(G, k, V, D_diag, trace).nodes)
         intersection = s & r
         r = r - intersection
         r = r - set(random.sample(list(r), m - len(intersection)))

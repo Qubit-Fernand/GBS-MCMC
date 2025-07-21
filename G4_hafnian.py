@@ -14,7 +14,7 @@ c = 0.4 # fugacity
 k = 16
 iteration = 1000
 mixing_time = 1000 # Hafnain mixing time 1000 x 1000
-
+t_initial = 1.0
 
 # Finding the 16-node subgraph with the maximum Hafnian using Random Search
 max_hafnian_list = np.zeros((10, iteration+1))
