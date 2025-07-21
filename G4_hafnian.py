@@ -80,7 +80,7 @@ np.save("./Data/G4/jerrum_glauber_SA_hafnian_list.npy", jerrum_glauber_max_hafni
 # Finding the 16-node subgraph with the maximum hafnian using quantum-inspired Simulated Annealing
 quantum_inspired_max_hafnian_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
-    quantum_inspired_max_hafnian_list[i], quantum_inspired_best_subgraph, quantum_inspired_best_hafnian = quantum_inspired_simulated_annealing(G, k, iteration)
+    quantum_inspired_max_hafnian_list[i], quantum_inspired_best_subgraph, quantum_inspired_best_hafnian = quantum_inspired_simulated_annealing(G, k, iteration, t_initial)
 
 np.save(f"./Data/G4/quantum_inspired_SA_hafnian_list.npy", quantum_inspired_max_hafnian_list)
 
