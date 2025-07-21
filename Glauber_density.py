@@ -3,7 +3,7 @@ from thewalrus import hafnian
 from tqdm import tqdm
 import numpy as np
 import random 
-         
+
 def calculate_hafnian(subgraph):
     # Convert the subgraph to an adjacency matrix
     adj_matrix = nx.to_numpy_array(subgraph)
@@ -188,8 +188,8 @@ def reject_glauber_dynamics(G, k, c, mixing_time):
 def quantum_inspired_sampling(G, k):
     A = nx.adjacency_matrix(G).toarray()
     # Construct the diagonal-dominant matrix
-    for i in range(n):
-        for j in range(n):
+    for i in range(G.number_of_nodes()):
+        for j in range(G.number_of_nodes()):
             if not(j==i):
                 A[i][i]+=abs(A[i][j])
                 
@@ -362,7 +362,7 @@ def simulated_annealing(G, k, iteration, t_initial):
         random.shuffle(remaining_indices)
         
         # Construct a new binary vector R
-        R = np.zeros(n, dtype=int)
+        R = np.zeros(len(nodes), dtype=int)
         R[fixed_indices] = 1
         R[remaining_indices[:k-m]] = 1
 
