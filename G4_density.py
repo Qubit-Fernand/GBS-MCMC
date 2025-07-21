@@ -57,21 +57,21 @@ max_density_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     max_density_list[i], best_subgraph, best_density = simulated_annealing(G, k, iteration, t_initial)
 
-np.save("./SA_density_list.npy", max_density_list)
+np.save("./Data/G4/SA_density_list.npy", max_density_list)
 
 # Finding the 80-node subgraph with the maximum density using Glauber Simulated Annealing
 glauber_max_density_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     glauber_max_density_list[i], glauber_best_subgraph, glauber_best_density = glauber_simulated_annealing(G, k, c, iteration, mixing_time, t_initial)
 
-np.save("./glauber_SA_density_list.npy", glauber_max_density_list)
+np.save("./Data/G4/glauber_SA_density_list.npy", glauber_max_density_list)
 
 # Finding the 80-node subgraph with the maximum density using Jerrum Glauber Simulated Annealing
 jerrum_glauber_max_density_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     jerrum_glauber_max_density_list[i], jerrum_glauber_best_subgraph, jerrum_glauber_best_density = jerrum_glauber_simulated_annealing(G, k, c, iteration, mixing_time, t_initial)
 
-np.save("./jerrum_glauber_SA_density_list.npy", jerrum_glauber_max_density_list)
+np.save("./Data/G4/jerrum_glauber_SA_density_list.npy", jerrum_glauber_max_density_list)
 
 
 # Finding the 80-node subgraph with the maximum density using Double-Loop Glauber Simulated Annealing
@@ -79,4 +79,4 @@ double_loop_glauber_max_density_list = np.zeros((10, iteration+1))
 for i in tqdm(range(10)):
     double_loop_glauber_max_density_list[i], double_loop_glauber_best_subgraph, double_loop_glauber_best_density = double_loop_glauber_simulated_annealing(G, k, c, iteration, mixing_time, t_initial)
 
-np.save("./double_loop_glauber_SA_density_list.npy", double_loop_glauber_max_density_list)
+np.save("./Data/G4/double_loop_glauber_SA_density_list.npy", double_loop_glauber_max_density_list)
