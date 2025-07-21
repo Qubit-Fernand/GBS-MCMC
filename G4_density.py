@@ -9,11 +9,10 @@ from Glauber_density import *
 
 # Number of vertexes
 n = 256
-c = 0.4 # fugacity
+c = 0.8 # fugacity
 k = 80
 iteration = 1000
-mixing_time = 1000 # We write 10000 in manuscript since the outter loop in double-loop Glauber times 10
-t_initial = 1.0
+mixing_time = 1000 # density mixing time 1000 x 100, since k = 80 computationally expensive
 
 G = nx.Graph(np.load(f"./Data/G4.npy"))
 

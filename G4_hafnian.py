@@ -13,7 +13,7 @@ G = nx.Graph(np.load(f"./Data/G4.npy"))
 c = 0.4 # fugacity
 k = 16
 iteration = 1000
-mixing_time = 1000 # We write 10000 in manuscript since the outter loop in double-loop Glauber times 10
+mixing_time = 1000 # Hafnain mixing time 1000 x 1000
 
 
 # Finding the 16-node subgraph with the maximum Hafnian using Random Search
