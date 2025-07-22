@@ -10,7 +10,7 @@ Gaussian Boson Sampling (GBS) is a promising candidate for demonstrating quantum
 
 2. The jupyter notebooks for each graph showcase the running pipeline: Generating graphs, running sampling with Glauber dynamics, then store the `.npy` data at `Data/` and finally plot at `Figure/`.
 
-3. We also provide each notebook with corresponding python file in the same name, which can be directly running on high-performance computing platforms.
+3. We also provide each notebook with corresponding python file in the same name, which can be directly running on high-performance computing platforms. You can first use `Graph.ipynb` to generate graphs and use `Plot.ipynb` to plot with output data.
 
 ## ✍️ Citation
 If you find our work helpful, please use the following citations.
