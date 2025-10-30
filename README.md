@@ -17,14 +17,19 @@ Gaussian Boson Sampling (GBS) is a promising candidate for demonstrating quantum
 If you find our work helpful, please use the following citations.
 
 ```
-@misc{zhang2025efficientclassicalalgorithmssimulating,
-      title={Efficient Classical Algorithms for Simulating Gaussian Boson Sampling on Graphs}, 
-      author={Yexin Zhang and Shuo Zhou and Xinzhao Wang and Ziruo Wang and Ziyi Yang and Rui Yang and Yecheng Xue and Tongyang Li},
-      year={2025},
+@article{zhang_efficient_2025,
+	title = {Efficient classical sampling from {Gaussian} boson sampling distributions on unweighted graphs},
+	volume = {16},
+	issn = {2041-1723},
+	url = {https://doi.org/10.1038/s41467-025-64442-7},
+	doi = {10.1038/s41467-025-64442-7},
+	number = {1},
+	journal = {Nature Communications},
+	author = {Zhang, Yexin and Zhou, Shuo and Wang, Xinzhao and Wang, Ziruo and Yang, Ziyi and Yang, Rui and Xue, Yecheng and Li, Tongyang},
+	month = oct,
+	year = {2025},
+	pages = {9335},
       eprint={2505.02445},
-      archivePrefix={arXiv},
-      primaryClass={quant-ph},
-      url={https://arxiv.org/abs/2505.02445}, 
 }
 ```
 
