@@ -29,7 +29,7 @@ If you find our work helpful, please use the following citations.
 	month = oct,
 	year = {2025},
 	pages = {9335},
-      eprint={2505.02445},
+    eprint={2505.02445},
 }
 ```
 
