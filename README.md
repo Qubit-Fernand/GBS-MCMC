@@ -1,6 +1,6 @@
 # Efficient Classical Sampling from Gaussian Boson Sampling Distributions on Unweighted Graphs
 
-Code and data for our paper [Efficient Classical Sampling from Gaussian Boson Sampling Distributions on Unweighted Graphs](https://arxiv.org/abs/2505.02445).
+Code and data for our paper [Efficient Classical Sampling from Gaussian Boson Sampling Distributions on Unweighted Graphs]([https://arxiv.org/abs/2505.02445](https://doi.org/10.1038/s41467-025-64442-7)).
 
 ## 👋 Overview
 
